@@ -2,24 +2,25 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { logRoles } from "@testing-library/dom";
 import App, { replaceCamelWithSpaces } from "./App";
 
-test("button has correct initial color, and updates when click", () => {
+test("button has correct initial color", () => {
   render(<App />);
 
-  // find an element with a role of button and text of 'Change to blue'
-  const colorButton = screen.getByRole("button", { name: "Change to blue" });
-  expect(colorButton).toBeInTheDocument();
+  // find an element with a role of button and text of 'Change to Midnight Blue'
+  const colorButton = screen.getByRole("button", {
+    name: "Change to Midnight Blue",
+  });
 
   // expect the background color to be red
-  expect(colorButton).toHaveStyle({ backgroundColor: "red" });
+  expect(colorButton).toHaveStyle({ backgroundColor: "MediumVioletRed" });
 
   // click button
   fireEvent.click(colorButton);
 
   // expect the background color to be blue
-  expect(colorButton).toHaveStyle({ backgroundColor: "blue" });
+  expect(colorButton).toHaveStyle({ backgroundColor: "MidnightBlue" });
 
-  // expect the button text to be 'Change to blue'
-  expect(colorButton).toHaveTextContent("Change to red");
+  // expect the button text to be 'Change to Medium Violet Red'
+  expect(colorButton).toHaveTextContent("Change to Medium Violet Red");
 });
 
 test("initial conditions", () => {
