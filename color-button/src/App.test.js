@@ -1,5 +1,4 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { logRoles } from "@testing-library/dom";
 import App, { replaceCamelWithSpaces } from "./App";
 
 test("button has correct initial color", () => {
@@ -48,7 +47,7 @@ test("Checkbox disables button on first click and enables on second click", () =
 
   // check the button becomes disabled after checkbox is checked
   fireEvent.click(checkbox);
-  expect(colorButton).not.toBeEnabled();
+  expect(colorButton).toBeDisabled();
 
   // check the button becomes enabled after checkbox is unchecked
   fireEvent.click(checkbox);
@@ -65,7 +64,7 @@ test("Disabled button has gray background and reverts to red", () => {
 
   // disable button
   fireEvent.click(checkbox);
-  expect(colorButton).not.toBeEnabled();
+  expect(colorButton).toBeDisabled();
   expect(colorButton).toHaveStyle({ backgroundColor: "gray" });
 
   // re-enable button
@@ -87,7 +86,7 @@ test("Clicked disabled button has gray background and reverts to blue", () => {
 
   // disable button
   fireEvent.click(checkbox);
-  expect(colorButton).not.toBeEnabled();
+  expect(colorButton).toBeDisabled();
   expect(colorButton).toHaveStyle({ backgroundColor: "gray" });
 
   // re-enable button
