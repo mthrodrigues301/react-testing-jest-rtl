@@ -1,3 +1,5 @@
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import SummaryForm from "./SummaryForm";
 
 const OrderSummary = () => {
@@ -8,41 +10,45 @@ const OrderSummary = () => {
     <>
       <h1>Order Summary</h1>
 
-      <form>
-        <fieldset>
-          <legend>Scoops: $6.00</legend>
-          <div>
+      <Form>
+        <Form.Group controlId={"scoops"}>
+          <Form.Label>Scoops: $6.00</Form.Label>
+          <Form.Control as="select" defaultValue={scoops[0]}>
             {scoops.map(({ scoop, idx }) => (
-              <input
+              <option
+                key={`scoops-${idx}`}
                 id={`scoops-${idx}`}
                 type="radio"
                 name="scoop"
+                label={scoop}
                 value={scoop}
               >
                 {scoop}
-              </input>
+              </option>
             ))}
-          </div>
-        </fieldset>
+          </Form.Control>
+        </Form.Group>
 
-        <fieldset>
-          <legend>Toppings: $2.00</legend>
-          <div>
+        <Form.Group controlId={"topping"}>
+          <Form.Label>Toppings: $2.00</Form.Label>
+          <Form.Control as="select" defaultValue={toppings[0]}>
             {toppings.map(({ topping, idx }) => (
-              <input
+              <option
+                key={`topping-${idx}`}
                 id={`topping-${idx}`}
                 type="radio"
-                name="topping"
+                name="scoop"
+                label={topping}
                 value={topping}
               >
                 {topping}
-              </input>
+              </option>
             ))}
-          </div>
-        </fieldset>
+          </Form.Control>
+        </Form.Group>
 
         <SummaryForm />
-      </form>
+      </Form>
     </>
   );
 };
